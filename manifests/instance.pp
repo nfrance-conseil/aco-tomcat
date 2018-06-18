@@ -21,7 +21,7 @@
 # [*service_name*]
 #   tomcat service name
 # [*service_ensure*]
-#   whether the service should be running (valid: 'stopped'|'running'|undef)
+#   whether the service should be running (valid: 'stopped'|'running'|'none')
 # [*service_enable*]
 #   enable service (boolean)
 # [*systemd_service_type*]
@@ -915,6 +915,9 @@ define tomcat::instance (
   $cluster_farm_deployer_watchdir_real = pick($cluster_farm_deployer_watchdir,"${catalina_base_real}/deploy")
   $cluster_farm_deployer_deploydir_real = pick($cluster_farm_deployer_deploydir, "${catalina_base_real}/webapps")
 
+  if $service_ensure == 'none' {
+    $service_ensure = undef,
+  }
   service { $service_name_real:
     ensure  => $service_ensure,
     enable  => $service_enable,
