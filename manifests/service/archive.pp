@@ -13,6 +13,7 @@ class tomcat::service::archive {
   $service_start_real = $::tomcat::service_start_real
   $service_stop_real = $::tomcat::service_stop_real
   $service_name_real = $::tomcat::service_name_real
+  $restart_on_failure =  $::tomcat::restart_on_failure
   $config_path_real = $::tomcat::config_path_real
   $tomcat_user = $::tomcat::tomcat_user_real
   $tomcat_group = $::tomcat::tomcat_group_real

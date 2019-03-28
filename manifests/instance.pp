@@ -94,7 +94,7 @@ define tomcat::instance (
   $service_ensure             = 'running',
   $service_enable             = true,
   $restart_on_change          = $::tomcat::restart_on_change,
-  $restart_on_failure         = false,
+  $restart_on_failure         = $::tomcat::restart_on_failure,
   $systemd_service_type       = undef,
   $service_start              = undef,
   $service_stop               = undef,
