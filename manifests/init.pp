@@ -25,7 +25,7 @@
 # [*service_name*]
 #   tomcat service name
 # [*service_ensure*]
-#   whether the service should be running (valid: 'stopped'|'running'|undef)
+#   whether the service should be running (valid: 'stopped'|'running'|'none')
 # [*service_enable*]
 #   enable service (boolean)
 # [*systemd_service_type*]
@@ -119,6 +119,7 @@ class tomcat (
   $service_ensure             = 'running',
   $service_enable             = true,
   $restart_on_change          = true,
+  $restart_on_failure         = false,
   $systemd_service_type       = undef,
   $force_init                 = false,
   $service_start              = undef,

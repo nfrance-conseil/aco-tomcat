@@ -9,8 +9,14 @@ class tomcat::service::package {
   }
 
   # tomcat service
+
+  if $::tomcat::service_ensure == 'none' {
+    $service_ensure = undef
+  } else {
+    $service_ensure = $::tomcat::service_ensure
+  }
   service { $::tomcat::service_name_real:
-    ensure => $::tomcat::service_ensure,
+    ensure => $service_ensure,
     enable => $::tomcat::service_enable
   }
 }

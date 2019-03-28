@@ -13,6 +13,7 @@ class tomcat::service::archive {
   $service_start_real = $::tomcat::service_start_real
   $service_stop_real = $::tomcat::service_stop_real
   $service_name_real = $::tomcat::service_name_real
+  $restart_on_failure =  $::tomcat::restart_on_failure
   $config_path_real = $::tomcat::config_path_real
   $tomcat_user = $::tomcat::tomcat_user_real
   $tomcat_group = $::tomcat::tomcat_group_real
@@ -69,8 +70,13 @@ class tomcat::service::archive {
     }
   }
 
+  if $::tomcat::service_ensure == 'none' {
+    $service_ensure = undef
+  } else {
+    $service_ensure = $::tomcat::service_ensure
+  }
   service { $service_name_real:
-    ensure  => $::tomcat::service_ensure,
+    ensure  => $service_ensure,
     enable  => $::tomcat::service_enable,
     require => File["${service_name_real} service unit"];
   }
