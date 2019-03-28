@@ -34,8 +34,6 @@
 #   force generation of a generic init script/unit
 # [*service_start*]
 #   override service startup command
-# [*restart_on_failure*]
-#   systemd restart on failure
 # [*service_stop*]
 #   override service shutdown command
 # [*tomcat_user*]
@@ -122,7 +120,6 @@ class tomcat (
   $service_enable             = true,
   $restart_on_change          = true,
   $systemd_service_type       = undef,
-  $restart_on_failure         = false,
   $force_init                 = false,
   $service_start              = undef,
   $service_stop               = undef,
