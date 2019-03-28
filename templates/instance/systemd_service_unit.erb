@@ -15,7 +15,10 @@ ExecStop=<%= @service_stop_real %>
 SuccessExitStatus=143
 User=<%= @tomcat_user %>
 Group=<%= @tomcat_group %>
-
+<% if @restart_on_failure -%>
+# 5 restarts in a 10sec period. 
+Restart=on-failure
+<% end -%>
 
 [Install]
 WantedBy=multi-user.target
