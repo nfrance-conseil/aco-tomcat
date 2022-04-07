@@ -172,6 +172,10 @@ class tomcat::params {
           case $::operatingsystemmajrelease {
             # stretch
             # https://packages.debian.org/stretch/tomcat8
+            '11'     : {
+              $version = '9.0.43-2~deb11u3'
+              $package_name = 'tomcat9'
+            }
             '9'     : {
               $version = '8.5.14-1+deb9u2'
               $package_name = 'tomcat8'
