@@ -7,3 +7,5 @@ pkg/
 Gemfile.lock
 # RSpec fixtures
 spec/fixtures/
+# JetBrains Idea IDE Metadatas
+.idea

@@ -15,13 +15,27 @@
   <%- end -%>
   <%- if host['contexts'] and ! host['contexts'].empty? -%>
     <%- host['contexts'].each do |context| -%>
-      <%- context.each_pair do |context_attrib, context_value| %>
-        <%- if context_attrib == context.keys.first -%>
-        <Context <%= context_attrib %>=<%= "#{context_value}".encode(:xml => :attr) -%>
-        <%- else -%>
-                 <%= context_attrib %>=<%= "#{context_value}".encode(:xml => :attr) -%>
+        <Context
+      <%- context.each_pair do |context_attrib, context_value| -%>
+        <%- if context_attrib != 'parameters' -%>
+                 <%= context_attrib %>=<%= "#{context_value}".encode(:xml => :attr) %>
         <%- end -%>
-      <%- end -%> />
+      <%- end -%>
+      <%- if context['parameters'] and ! context['parameters'].empty? -%>
+        >
+        <%- context['parameters'].each do |parameter| -%>
+          <%- parameter.each_pair do |param_attrib, param_value| %>
+            <%- if param_attrib == parameter.keys.first -%>
+          <Parameter <%= param_attrib %>=<%= "#{param_value}".encode(:xml => :attr) -%>
+            <%- else -%>
+                     <%= param_attrib %>=<%= "#{param_value}".encode(:xml => :attr) -%>
+            <%- end -%>
+          <%- end %> />
+        <%- end -%>
+        </Context>
+      <%- else -%>
+        />
+      <%- end -%>
     <%- end -%>
   <%- end -%>
   <%- if host['valves'] and ! host['valves'].empty? -%>
