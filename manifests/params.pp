@@ -175,16 +175,19 @@ class tomcat::params {
             '11'     : {
               $version = '9.0.43-2~deb11u3'
               $package_name = 'tomcat9'
+              $systemd = true
             }
             '9'     : {
               $version = '8.5.14-1+deb9u2'
               $package_name = 'tomcat8'
+              $systemd = false
             }
             # jessie
             # https://packages.debian.org/jessie/tomcat8
             '8'     : {
               $version = '8.0.14-1+deb8u11'
               $package_name = 'tomcat8'
+              $systemd = false
               # $version = '7.0.56-3+deb8u10'
               # $package_name = 'tomcat7'
             }
@@ -193,6 +196,7 @@ class tomcat::params {
             '7'     : {
               $version = '7.0.28-4+deb7u15'
               $package_name = 'tomcat7'
+              $systemd = false
               # $version = '6.0.45+dfsg-1~deb7u5'
               # $package_name = 'tomcat6'
             }
@@ -265,13 +269,13 @@ class tomcat::params {
               fail("Unsupported OS version ${::operatingsystemrelease}")
             }
           }
+          $systemd = false
         }
         default  : {
           fail("Unsupported OS ${::operatingsystem}")
         }
       }
       $tomcat_native_package_name = 'libtcnative-1'
-      $systemd = false
     }
     default  : {
       fail("Unsupported OS family ${::osfamily}")
