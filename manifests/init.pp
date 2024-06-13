@@ -367,7 +367,7 @@ class tomcat (
   if $install_from !~ /^(package|archive)$/ {
     fail('$install_from must be either \'package\' or \'archive\'')
   }
-  if $version !~ /^([0-9]{1,2}:)?[0-9]\.[0-9]\.[0-9]{1,2}(\.M[0-9]{1,3})?(-.*)?$/ {
+  if $version !~ /^([0-9]{1,2}:)?[0-9]\.[0-9]\.[0-9]{1,3}(\.M[0-9]{1,2})?(-.*)?$/ {
     fail('incorrect tomcat version number')
   }
   if $checksum_type !~ /^(none|md5|sha1|sha2|sh256|sha384|sha512)$/ {
