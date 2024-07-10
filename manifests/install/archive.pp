@@ -80,7 +80,7 @@ class tomcat::install::archive {
     file { $::tomcat::log_path_real:
       ensure => directory,
       path   => $::tomcat::log_path_real,
-      user   => $::tomcat::tomcat_user_real,
+      owner  => $::tomcat::tomcat_user_real,
       group  => $::tomcat::tomcat_group_real,
       mode   => $::tomcat::log_folder_mode,
       alias  => 'tomcat logs directory',
