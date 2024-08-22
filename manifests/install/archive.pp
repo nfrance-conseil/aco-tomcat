@@ -28,6 +28,7 @@ class tomcat::install::archive {
       uid    => $::tomcat::tomcat_user_id,
       gid    => $::tomcat::tomcat_group_real,
       home   => $::tomcat::catalina_home_real,
+      shell  => $::tomcat::tomcat_user_shell,
       system => true
     }
   }

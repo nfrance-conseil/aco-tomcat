@@ -40,6 +40,8 @@
 #   service user
 # [*tomcat_user_id*]
 #   service user id
+# [*tomcat_user_shell*]
+#   service user shell
 # [*tomcat_group*]
 #   service group
 # [*tomcat_group_id*]
@@ -126,6 +128,7 @@ class tomcat (
   $service_stop               = undef,
   $tomcat_user                = undef,
   $tomcat_user_id             = undef,
+  $tomcat_user_shell          = undef,
   $tomcat_group               = undef,
   $tomcat_group_id            = undef,
   $file_mode                  = '0600',
