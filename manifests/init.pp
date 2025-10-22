@@ -351,6 +351,7 @@ class tomcat (
   $catalina_tmpdir            = undef,
   $catalina_pid               = undef,
   $catalina_opts              = [],
+  $catalina_base_file_mode    = '0644',
   # java
   $java_home                  = undef,
   $java_opts                  = ['-server'],

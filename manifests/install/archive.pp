@@ -36,7 +36,7 @@ class tomcat::install::archive {
   File {
     owner => $::tomcat::tomcat_user_real,
     group => $::tomcat::tomcat_group_real,
-    mode  => '0644'
+    mode  => $::tomcat::catalina_home_file_mode
   }
 
   file { $::tomcat::catalina_home_real:
