@@ -41,6 +41,7 @@ class tomcat::install::archive {
 
   file { $::tomcat::catalina_home_real:
     ensure => directory,
+    path   => $::tomcat::catalina_home_real,
     owner  => $::tomcat::tomcat_user_real,
     group  => $::tomcat::tomcat_group_real,
     mode   => $::tomcat::catalina_home_file_mode
