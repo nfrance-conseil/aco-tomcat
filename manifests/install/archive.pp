@@ -40,7 +40,10 @@ class tomcat::install::archive {
   }
 
   file { $::tomcat::catalina_home_real:
-    ensure => directory
+    ensure => directory,
+    owner  => $::tomcat::tomcat_user_real,
+    group  => $::tomcat::tomcat_group_real,
+    mode   => $::tomcat::catalina_home_file_mode
   }
 
   archive { "apache-tomcat-${::tomcat::version_real}.tar.gz":
