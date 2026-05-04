@@ -18,7 +18,7 @@ class tomcat::service {
   #| systemd  | use package unit    | create unit, use catalina.sh   |
   # -----------------------------------------------------------------
 
-  if $::tomcat::install_from == 'package' and !$::tomcat::force_init {
+  if $tomcat::install_from == 'package' and !$tomcat::force_init {
     contain tomcat::service::package
   } else {
     contain tomcat::service::archive

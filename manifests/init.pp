@@ -109,13 +109,13 @@ class tomcat (
   # packages and service
   #..................................................................................
   $install_from               = 'package',
-  $version                    = $::tomcat::params::version,
+  $version                    = $tomcat::params::version,
   $archive_source             = undef,
   $archive_filename           = undef,
   $archive_mirror             = 'http://archive.apache.org',
   $proxy_server               = undef,
   $proxy_type                 = undef,
-  $package_name               = $::tomcat::params::package_name,
+  $package_name               = $tomcat::params::package_name,
   $package_ensure             = undef,
   $service_name               = undef,
   $service_ensure             = 'running',
@@ -133,7 +133,7 @@ class tomcat (
   $tomcat_group_id            = undef,
   $file_mode                  = '0600',
   $tomcat_native              = false,
-  $tomcat_native_package_name = $::tomcat::params::tomcat_native_package_name,
+  $tomcat_native_package_name = $tomcat::params::tomcat_native_package_name,
   $extras_enable              = false,
   $extras_source              = undef,
   $extras_package_name        = undef,
@@ -415,7 +415,7 @@ class tomcat (
   }
 
   if $admin_webapps_package_name == undef {
-    $admin_webapps_package_name_real = $::osfamily ? {
+    $admin_webapps_package_name_real = $facts['os']['family'] ? {
       'Debian' => "${package_name}-admin",
       default  => "${package_name}-admin-webapps"
     } } else {
@@ -431,7 +431,7 @@ class tomcat (
   if $catalina_base == undef {
     case $install_from {
       'package' : {
-        $catalina_base_real = $::osfamily ? {
+        $catalina_base_real = $facts['os']['family'] ? {
           'Debian' => "/var/lib/${service_name_real}",
           default  => $catalina_home_real
         } }
@@ -452,7 +452,7 @@ class tomcat (
   if $catalina_tmpdir == undef {
     case $install_from {
       'package' : {
-        $catalina_tmpdir_real = $::osfamily ? {
+        $catalina_tmpdir_real = $facts['os']['family'] ? {
           'Debian' => '$JVM_TMP',
           default  => "${catalina_base_real}/temp"
         } }
@@ -495,7 +495,7 @@ class tomcat (
   if $config_path == undef {
     case $install_from {
       'package' : {
-        $config_path_real = $::osfamily ? {
+        $config_path_real = $facts['os']['family'] ? {
           'Debian' => "/etc/default/${service_name_real}",
           'Suse'   => "/etc/${service_name_real}/${service_name_real}.conf",
           default  => "/etc/sysconfig/${service_name_real}"
@@ -549,7 +549,7 @@ class tomcat (
   if $tomcat_user == undef {
     case $install_from {
       'package' : {
-        $tomcat_user_real = $::osfamily ? {
+        $tomcat_user_real = $facts['os']['family'] ? {
           'Debian' => $service_name_real,
           default  => 'tomcat'
         } }
@@ -567,7 +567,7 @@ class tomcat (
     $tomcat_group_real = $tomcat_group
   }
 
-  if $::osfamily == 'Debian' {
+  if $facts['os']['family'] == 'Debian' {
     $security_manager_real = $security_manager ? {
       true    => 'yes',
       default => 'no'

@@ -7,109 +7,109 @@ class tomcat::config {
   }
 
   # forward variables used in templates
-  $version_real = $::tomcat::version_real
-  $maj_version = $::tomcat::maj_version
-  $tomcat_user = $::tomcat::tomcat_user_real
-  $tomcat_group = $::tomcat::tomcat_group_real
-  $server_params_real = $::tomcat::server_params_real
-  $jrememleak_attrs = $::tomcat::jrememleak_attrs
-  $versionlogger_listener = $::tomcat::versionlogger_listener
-  $versionlogger_logargs = $::tomcat::versionlogger_logargs
-  $versionlogger_logenv = $::tomcat::versionlogger_logenv
-  $versionlogger_logprops = $::tomcat::versionlogger_logprops
-  $apr_listener = $::tomcat::apr_listener
-  $apr_sslengine = $::tomcat::apr_sslengine
-  $jmx_listener = $::tomcat::jmx_listener
-  $jmx_registry_port = $::tomcat::jmx_registry_port
-  $jmx_server_port = $::tomcat::jmx_server_port
-  $jmx_bind_address = $::tomcat::jmx_bind_address
-  $jmx_uselocalports = $::tomcat::jmx_uselocalports
-  $listeners = $::tomcat::listeners
-  $svc_params_real = $::tomcat::svc_params_real
-  $threadpool_executor = $::tomcat::threadpool_executor
-  $threadpool_name = $::tomcat::threadpool_name
-  $threadpool_params_real = $::tomcat::threadpool_params_real
-  $executors = $::tomcat::executors
-  $http_connector = $::tomcat::http_connector
-  $http_port = $::tomcat::http_port
-  $http_params_real = $::tomcat::http_params_real
-  $ssl_connector = $::tomcat::ssl_connector
-  $ssl_port = $::tomcat::ssl_port
-  $ssl_params_real = $::tomcat::ssl_params_real
-  $ajp_connector = $::tomcat::ajp_connector
-  $ajp_port = $::tomcat::ajp_port
-  $ajp_protocol = $::tomcat::ajp_protocol
-  $ajp_params_real = $::tomcat::ajp_params_real
-  $connectors = $::tomcat::connectors
-  $engine_params_real = $::tomcat::engine_params_real
-  $host_name = $::tomcat::host_name
-  $host_params_real = $::tomcat::host_params_real
-  $hosts = $::tomcat::hosts
-  $contexts = $::tomcat::contexts
-  $use_simpletcpcluster = $::tomcat::use_simpletcpcluster
-  $cluster_membership_port = $::tomcat::cluster_membership_port
-  $cluster_membership_bind_address = $::tomcat::cluster_membership_bind_address
-  $cluster_membership_domain = $::tomcat::cluster_membership_domain
-  $cluster_receiver_address = $::tomcat::cluster_receiver_address
-  $cluster_receiver_port = $::tomcat::cluster_receiver_port
-  $cluster_farm_deployer = $::tomcat::cluster_farm_deployer
-  $cluster_parent_real = $::tomcat::cluster_parent_real
-  $cluster_farm_deployer_watchdir = $::tomcat::cluster_farm_deployer_watchdir
-  $cluster_farm_deployer_deploydir = $::tomcat::cluster_farm_deployer_deploydir
-  $cluster_farm_deployer_watch_enabled = $::tomcat::cluster_farm_deployer_watch_enabled
-  $combined_realm = $::tomcat::combined_realm
-  $lockout_realm = $::tomcat::lockout_realm
-  $userdatabase_realm = $::tomcat::userdatabase_realm
-  $realms = $::tomcat::realms
-  $singlesignon_valve = $::tomcat::singlesignon_valve
-  $accesslog_valve = $::tomcat::accesslog_valve
-  $accesslog_valve_pattern = $::tomcat::accesslog_valve_pattern
-  $valves = $::tomcat::valves
-  $engine_valves = $::tomcat::engine_valves
-  $globalnaming_environments = $::tomcat::globalnaming_environments
-  $globalnaming_resources = $::tomcat::globalnaming_resources
-  $context_params = $::tomcat::context_params
-  $context_cookieprocessor = $::tomcat::context_cookieprocessor
-  $context_loader = $::tomcat::context_loader
-  $context_manager = $::tomcat::context_manager
-  $context_realm = $::tomcat::context_realm
-  $context_resources = $::tomcat::context_resources
-  $context_watchedresources = $::tomcat::context_watchedresources
-  $context_parameters = $::tomcat::context_parameters
-  $context_environments = $::tomcat::context_environments
-  $context_listeners = $::tomcat::context_listeners
-  $context_valves = $::tomcat::context_valves
-  $context_resourcedefs = $::tomcat::context_resourcedefs
-  $context_resourcelinks = $::tomcat::context_resourcelinks
-  $java_home = $::tomcat::java_home
-  $catalina_base_real = $::tomcat::catalina_base_real
-  $catalina_home_real = $::tomcat::catalina_home_real
-  $jasper_home_real = $::tomcat::jasper_home_real
-  $catalina_tmpdir_real = $::tomcat::catalina_tmpdir_real
-  $catalina_pid_real = $::tomcat::catalina_pid_real
-  $java_opts_real = $::tomcat::java_opts_real
-  $catalina_opts_real = $::tomcat::catalina_opts_real
-  $lang = $::tomcat::lang
-  $security_manager_real = $::tomcat::security_manager_real
-  $shutdown_wait = $::tomcat::shutdown_wait
-  $shutdown_verbose = $::tomcat::shutdown_verbose
-  $jpda_transport = $::tomcat::jpda_transport
-  $jpda_address = $::tomcat::jpda_address
-  $jpda_suspend = $::tomcat::jpda_suspend
-  $jpda_opts_real = $::tomcat::jpda_opts_real
-  $custom_variables = $::tomcat::custom_variables
+  $version_real = $tomcat::version_real
+  $maj_version = $tomcat::maj_version
+  $tomcat_user = $tomcat::tomcat_user_real
+  $tomcat_group = $tomcat::tomcat_group_real
+  $server_params_real = $tomcat::server_params_real
+  $jrememleak_attrs = $tomcat::jrememleak_attrs
+  $versionlogger_listener = $tomcat::versionlogger_listener
+  $versionlogger_logargs = $tomcat::versionlogger_logargs
+  $versionlogger_logenv = $tomcat::versionlogger_logenv
+  $versionlogger_logprops = $tomcat::versionlogger_logprops
+  $apr_listener = $tomcat::apr_listener
+  $apr_sslengine = $tomcat::apr_sslengine
+  $jmx_listener = $tomcat::jmx_listener
+  $jmx_registry_port = $tomcat::jmx_registry_port
+  $jmx_server_port = $tomcat::jmx_server_port
+  $jmx_bind_address = $tomcat::jmx_bind_address
+  $jmx_uselocalports = $tomcat::jmx_uselocalports
+  $listeners = $tomcat::listeners
+  $svc_params_real = $tomcat::svc_params_real
+  $threadpool_executor = $tomcat::threadpool_executor
+  $threadpool_name = $tomcat::threadpool_name
+  $threadpool_params_real = $tomcat::threadpool_params_real
+  $executors = $tomcat::executors
+  $http_connector = $tomcat::http_connector
+  $http_port = $tomcat::http_port
+  $http_params_real = $tomcat::http_params_real
+  $ssl_connector = $tomcat::ssl_connector
+  $ssl_port = $tomcat::ssl_port
+  $ssl_params_real = $tomcat::ssl_params_real
+  $ajp_connector = $tomcat::ajp_connector
+  $ajp_port = $tomcat::ajp_port
+  $ajp_protocol = $tomcat::ajp_protocol
+  $ajp_params_real = $tomcat::ajp_params_real
+  $connectors = $tomcat::connectors
+  $engine_params_real = $tomcat::engine_params_real
+  $host_name = $tomcat::host_name
+  $host_params_real = $tomcat::host_params_real
+  $hosts = $tomcat::hosts
+  $contexts = $tomcat::contexts
+  $use_simpletcpcluster = $tomcat::use_simpletcpcluster
+  $cluster_membership_port = $tomcat::cluster_membership_port
+  $cluster_membership_bind_address = $tomcat::cluster_membership_bind_address
+  $cluster_membership_domain = $tomcat::cluster_membership_domain
+  $cluster_receiver_address = $tomcat::cluster_receiver_address
+  $cluster_receiver_port = $tomcat::cluster_receiver_port
+  $cluster_farm_deployer = $tomcat::cluster_farm_deployer
+  $cluster_parent_real = $tomcat::cluster_parent_real
+  $cluster_farm_deployer_watchdir = $tomcat::cluster_farm_deployer_watchdir
+  $cluster_farm_deployer_deploydir = $tomcat::cluster_farm_deployer_deploydir
+  $cluster_farm_deployer_watch_enabled = $tomcat::cluster_farm_deployer_watch_enabled
+  $combined_realm = $tomcat::combined_realm
+  $lockout_realm = $tomcat::lockout_realm
+  $userdatabase_realm = $tomcat::userdatabase_realm
+  $realms = $tomcat::realms
+  $singlesignon_valve = $tomcat::singlesignon_valve
+  $accesslog_valve = $tomcat::accesslog_valve
+  $accesslog_valve_pattern = $tomcat::accesslog_valve_pattern
+  $valves = $tomcat::valves
+  $engine_valves = $tomcat::engine_valves
+  $globalnaming_environments = $tomcat::globalnaming_environments
+  $globalnaming_resources = $tomcat::globalnaming_resources
+  $context_params = $tomcat::context_params
+  $context_cookieprocessor = $tomcat::context_cookieprocessor
+  $context_loader = $tomcat::context_loader
+  $context_manager = $tomcat::context_manager
+  $context_realm = $tomcat::context_realm
+  $context_resources = $tomcat::context_resources
+  $context_watchedresources = $tomcat::context_watchedresources
+  $context_parameters = $tomcat::context_parameters
+  $context_environments = $tomcat::context_environments
+  $context_listeners = $tomcat::context_listeners
+  $context_valves = $tomcat::context_valves
+  $context_resourcedefs = $tomcat::context_resourcedefs
+  $context_resourcelinks = $tomcat::context_resourcelinks
+  $java_home = $tomcat::java_home
+  $catalina_base_real = $tomcat::catalina_base_real
+  $catalina_home_real = $tomcat::catalina_home_real
+  $jasper_home_real = $tomcat::jasper_home_real
+  $catalina_tmpdir_real = $tomcat::catalina_tmpdir_real
+  $catalina_pid_real = $tomcat::catalina_pid_real
+  $java_opts_real = $tomcat::java_opts_real
+  $catalina_opts_real = $tomcat::catalina_opts_real
+  $lang = $tomcat::lang
+  $security_manager_real = $tomcat::security_manager_real
+  $shutdown_wait = $tomcat::shutdown_wait
+  $shutdown_verbose = $tomcat::shutdown_verbose
+  $jpda_transport = $tomcat::jpda_transport
+  $jpda_address = $tomcat::jpda_address
+  $jpda_suspend = $tomcat::jpda_suspend
+  $jpda_opts_real = $tomcat::jpda_opts_real
+  $custom_variables = $tomcat::custom_variables
 
-  $notify_service = $::tomcat::restart_on_change ? {
-    true  => Service[$::tomcat::service_name_real],
+  $notify_service = $tomcat::restart_on_change ? {
+    true  => Service[$tomcat::service_name_real],
     false => undef,
   }
 
   # generate and manage server configuration
   concat { 'tomcat server configuration':
-    path   => "${::tomcat::catalina_base_real}/conf/server.xml",
+    path   => "${tomcat::catalina_base_real}/conf/server.xml",
     owner  => $tomcat_user,
     group  => $tomcat_group,
-    mode   => $::tomcat::file_mode,
+    mode   => $tomcat::file_mode,
     order  => 'numeric',
     notify => $notify_service
   }
@@ -338,8 +338,8 @@ class tomcat::config {
 
   # generate and manage context configuration
   ::tomcat::context { 'main default':
-    path             => "${::tomcat::catalina_base_real}/conf/context.xml",
-    file_mode        => $::tomcat::file_mode,
+    path             => "${tomcat::catalina_base_real}/conf/context.xml",
+    file_mode        => $tomcat::file_mode,
     params           => $context_params,
     cookieprocessor  => $context_cookieprocessor,
     loader           => $context_loader,
@@ -358,16 +358,16 @@ class tomcat::config {
 
   # generate and manage default web apps configuration
   ::tomcat::web { 'main default':
-    path                               => "${::tomcat::catalina_base_real}/conf/web.xml",
-    file_mode                          => $::tomcat::file_mode,
-    default_servlet_params             => $::tomcat::default_servlet_params_real,
-    jsp_servlet_params                 => $::tomcat::jsp_servlet_params_real,
-    default_servletmapping_urlpatterns => $::tomcat::default_servletmapping_urlpatterns,
-    jsp_servletmapping_urlpatterns     => $::tomcat::jsp_servletmapping_urlpatterns,
-    sessionconfig_sessiontimeout       => $::tomcat::sessionconfig_sessiontimeout,
-    sessionconfig_trackingmode         => $::tomcat::sessionconfig_trackingmode,
-    welcome_file_list                  => $::tomcat::welcome_file_list,
-    security_constraints               => $::tomcat::security_constraints,
+    path                               => "${tomcat::catalina_base_real}/conf/web.xml",
+    file_mode                          => $tomcat::file_mode,
+    default_servlet_params             => $tomcat::default_servlet_params_real,
+    jsp_servlet_params                 => $tomcat::jsp_servlet_params_real,
+    default_servletmapping_urlpatterns => $tomcat::default_servletmapping_urlpatterns,
+    jsp_servletmapping_urlpatterns     => $tomcat::jsp_servletmapping_urlpatterns,
+    sessionconfig_sessiontimeout       => $tomcat::sessionconfig_sessiontimeout,
+    sessionconfig_trackingmode         => $tomcat::sessionconfig_trackingmode,
+    welcome_file_list                  => $tomcat::welcome_file_list,
+    security_constraints               => $tomcat::security_constraints,
     notify                             => $notify_service
   }
 
@@ -395,7 +395,7 @@ class tomcat::config {
   # - $custom_variables
   file { 'tomcat environment variables':
     ensure  => present,
-    path    => $::tomcat::config_path_real,
+    path    => $tomcat::config_path_real,
     content => template("${module_name}/common/setenv.erb"),
     owner   => $tomcat_user,
     group   => $tomcat_group,
@@ -403,21 +403,21 @@ class tomcat::config {
     notify  => $notify_service
   }
 
-  if $::osfamily == 'RedHat' {
+  if $facts['os']['family'] == 'RedHat' {
     # make sure system variables are in the right place
     file { 'tomcat default variables':
       ensure  => present,
-      path    => "${::tomcat::catalina_base_real}/conf/${::tomcat::service_name_real}.conf",
-      content => "# See ${::tomcat::config_path_real}"
+      path    => "${tomcat::catalina_base_real}/conf/${tomcat::service_name_real}.conf",
+      content => "# See ${tomcat::config_path_real}"
     }
   }
 
   # generate and manage UserDatabase file
   concat { 'main UserDatabase':
-    path   => "${::tomcat::catalina_base_real}/conf/tomcat-users.xml",
+    path   => "${tomcat::catalina_base_real}/conf/tomcat-users.xml",
     owner  => $tomcat_user,
     group  => $tomcat_group,
-    mode   => $::tomcat::file_mode,
+    mode   => $tomcat::file_mode,
     order  => 'numeric',
     notify => $notify_service
   }
@@ -435,16 +435,16 @@ class tomcat::config {
   }
 
   # configure authorized access
-  unless !$::tomcat::create_default_admin {
-    ::tomcat::userdb_entry { "main ${::tomcat::admin_user}":
+  unless !$tomcat::create_default_admin {
+    ::tomcat::userdb_entry { "main ${tomcat::admin_user}":
       database => 'main UserDatabase',
-      username => $::tomcat::admin_user,
-      password => $::tomcat::admin_password,
+      username => $tomcat::admin_user,
+      password => $tomcat::admin_password,
       roles    => ['manager-gui', 'manager-script', 'admin-gui', 'admin-script']
     }
   }
 
   # Configure users and roles defined in $tomcat_users and $tomcat_roles
-  create_resources('::tomcat::userdb_entry', $::tomcat::tomcat_users, {})
-  create_resources('::tomcat::userdb_role_entry', $::tomcat::tomcat_roles, {})
+  create_resources('::tomcat::userdb_entry', $tomcat::tomcat_users, {})
+  create_resources('::tomcat::userdb_role_entry', $tomcat::tomcat_roles, {})
 }

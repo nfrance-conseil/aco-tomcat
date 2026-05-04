@@ -9,22 +9,22 @@ class tomcat::service::archive {
   }
 
   # forward variables used in templates
-  $catalina_base_real = $::tomcat::catalina_base_real
-  $service_start_real = $::tomcat::service_start_real
-  $service_stop_real = $::tomcat::service_stop_real
-  $service_name_real = $::tomcat::service_name_real
-  $restart_on_failure =  $::tomcat::restart_on_failure
-  $config_path_real = $::tomcat::config_path_real
-  $tomcat_user = $::tomcat::tomcat_user_real
-  $tomcat_group = $::tomcat::tomcat_group_real
-  $systemd_service_type_real = $::tomcat::systemd_service_type_real
+  $catalina_base_real = $tomcat::catalina_base_real
+  $service_start_real = $tomcat::service_start_real
+  $service_stop_real = $tomcat::service_stop_real
+  $service_name_real = $tomcat::service_name_real
+  $restart_on_failure =  $tomcat::restart_on_failure
+  $config_path_real = $tomcat::config_path_real
+  $tomcat_user = $tomcat::tomcat_user_real
+  $tomcat_group = $tomcat::tomcat_group_real
+  $systemd_service_type_real = $tomcat::systemd_service_type_real
 
-  $notify_service = $::tomcat::restart_on_change ? {
-    true  => Service[$::tomcat::service_name_real],
+  $notify_service = $tomcat::restart_on_change ? {
+    true  => Service[$tomcat::service_name_real],
     false => undef,
   }
 
-  if $::tomcat::params::systemd {
+  if $tomcat::params::systemd {
     # manage systemd unit on compatible systems
     # Template uses:
     # - $systemd_service_type_real
@@ -70,14 +70,14 @@ class tomcat::service::archive {
     }
   }
 
-  if $::tomcat::service_ensure == 'none' {
+  if $tomcat::service_ensure == 'none' {
     $service_ensure = undef
   } else {
-    $service_ensure = $::tomcat::service_ensure
+    $service_ensure = $tomcat::service_ensure
   }
   service { $service_name_real:
     ensure  => $service_ensure,
-    enable  => $::tomcat::service_enable,
+    enable  => $tomcat::service_enable,
     require => File["${service_name_real} service unit"];
   }
 }

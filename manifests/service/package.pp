@@ -10,13 +10,13 @@ class tomcat::service::package {
 
   # tomcat service
 
-  if $::tomcat::service_ensure == 'none' {
+  if $tomcat::service_ensure == 'none' {
     $service_ensure = undef
   } else {
-    $service_ensure = $::tomcat::service_ensure
+    $service_ensure = $tomcat::service_ensure
   }
-  service { $::tomcat::service_name_real:
+  service { $tomcat::service_name_real:
     ensure => $service_ensure,
-    enable => $::tomcat::service_enable
+    enable => $tomcat::service_enable
   }
 }

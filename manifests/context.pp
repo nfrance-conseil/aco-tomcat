@@ -2,9 +2,9 @@
 #
 define tomcat::context (
   $path,
-  $owner            = $::tomcat::tomcat_user_real,
-  $group            = $::tomcat::tomcat_group_real,
-  $file_mode        = $::tomcat::file_mode,
+  $owner            = $tomcat::tomcat_user_real,
+  $group            = $tomcat::tomcat_group_real,
+  $file_mode        = $tomcat::file_mode,
   $params           = {},
   $cookieprocessor  = {},
   $loader           = {},
