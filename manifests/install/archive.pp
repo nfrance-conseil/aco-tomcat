@@ -28,6 +28,7 @@ class tomcat::install::archive {
       uid    => $::tomcat::tomcat_user_id,
       gid    => $::tomcat::tomcat_group_real,
       home   => $::tomcat::catalina_home_real,
+      shell  => $::tomcat::tomcat_user_shell,
       system => true
     }
   }
@@ -35,11 +36,15 @@ class tomcat::install::archive {
   File {
     owner => $::tomcat::tomcat_user_real,
     group => $::tomcat::tomcat_group_real,
-    mode  => '0644'
+    mode  => $::tomcat::catalina_home_file_mode
   }
 
   file { $::tomcat::catalina_home_real:
-    ensure => directory
+    ensure => directory,
+    path   => $::tomcat::catalina_home_real,
+    owner  => $::tomcat::tomcat_user_real,
+    group  => $::tomcat::tomcat_group_real,
+    mode   => $::tomcat::catalina_home_file_mode
   }
 
   archive { "apache-tomcat-${::tomcat::version_real}.tar.gz":
@@ -80,6 +85,8 @@ class tomcat::install::archive {
     file { $::tomcat::log_path_real:
       ensure => directory,
       path   => $::tomcat::log_path_real,
+      owner  => $::tomcat::tomcat_user_real,
+      group  => $::tomcat::tomcat_group_real,
       mode   => $::tomcat::log_folder_mode,
       alias  => 'tomcat logs directory',
       tag    => 'tomcat_tree'

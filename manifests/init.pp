@@ -40,6 +40,8 @@
 #   service user
 # [*tomcat_user_id*]
 #   service user id
+# [*tomcat_user_shell*]
+#   service user shell
 # [*tomcat_group*]
 #   service group
 # [*tomcat_group_id*]
@@ -126,6 +128,7 @@ class tomcat (
   $service_stop               = undef,
   $tomcat_user                = undef,
   $tomcat_user_id             = undef,
+  $tomcat_user_shell          = undef,
   $tomcat_group               = undef,
   $tomcat_group_id            = undef,
   $file_mode                  = '0600',
@@ -348,6 +351,7 @@ class tomcat (
   $catalina_tmpdir            = undef,
   $catalina_pid               = undef,
   $catalina_opts              = [],
+  $catalina_home_file_mode    = '0644',
   # java
   $java_home                  = undef,
   $java_opts                  = ['-server'],
@@ -367,7 +371,7 @@ class tomcat (
   if $install_from !~ /^(package|archive)$/ {
     fail('$install_from must be either \'package\' or \'archive\'')
   }
-  if $version !~ /^([0-9]{1,2}:)?[0-9]\.[0-9]\.[0-9]{1,3}(\.M[0-9]{1,3})?(-.*)?$/ {
+  if $version !~ /^([0-9]{1,2}:)?[0-9]{1,2}\.[0-9]\.[0-9]{1,3}(\.M[0-9]{1,3})?(-.*)?$/ {
     fail('incorrect tomcat version number')
   }
   if $checksum_type !~ /^(none|md5|sha1|sha2|sh256|sha384|sha512)$/ {
