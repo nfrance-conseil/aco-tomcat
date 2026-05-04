@@ -170,8 +170,11 @@ class tomcat::params {
       case $::operatingsystem {
         'Debian' : {
           case $::operatingsystemmajrelease {
-            # stretch
-            # https://packages.debian.org/stretch/tomcat8
+            '12'     : {
+              $version = '10.1.6-1+deb12u1'
+              $package_name = 'tomcat10'
+              $systemd = true
+            }
             '11'     : {
               $version = '9.0.43-2~deb11u3'
               $package_name = 'tomcat9'
