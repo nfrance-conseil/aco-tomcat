@@ -31,7 +31,7 @@ class tomcat::install::package {
   }
 
   # fix broken bits in some tomcat init scripts
-  if $facts['os']['family'] == 'RedHat' and $facts['os']['name'] != 'Fedora' and $facts['os']['name']majrelease < '7' { #fix 'status' command for instances
+  if $facts['os']['family'] == 'RedHat' and $facts['os']['name'] != 'Fedora' and $facts['os']['release']['major'] < '7' { #fix 'status' command for instances
     file_line { 'fix broken tomcat init script':
       path     => "/etc/init.d/${tomcat::service_name_real}",
       line     => "            pid=\"$(/usr/bin/pgrep -d , -u \${TOMCAT_USER} -G \${TOMCAT_USER} -f Dcatalina.base=\${CATALINA_BASE})\"",

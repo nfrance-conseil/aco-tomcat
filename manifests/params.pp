@@ -5,7 +5,7 @@ class tomcat::params {
     'RedHat' : {
       case $facts['os']['name'] {
         'Fedora' : {
-          case $facts['os']['name']majrelease {
+          case $facts['os']['release']['major'] {
             # https://dl.fedoraproject.org/pub/fedora/linux/updates/26/x86_64/t/
             '26'    : {
               $version = '1:8.0.46'
@@ -17,7 +17,7 @@ class tomcat::params {
               $package_name = 'tomcat'
             }
             default : {
-              fail("Unsupported OS version ${facts['os']['name']majrelease}")
+              fail("Unsupported OS version ${facts['os']['release']['major']}")
             }
           }
           $systemd = true
@@ -33,7 +33,7 @@ class tomcat::params {
           $systemd = false
         }
         default  : {
-          case $facts['os']['name']majrelease {
+          case $facts['os']['release']['major'] {
             # http://mirror.centos.org/centos-7/7/updates/x86_64/Packages/
             '7'     : {
               $version = '7.0.76'
