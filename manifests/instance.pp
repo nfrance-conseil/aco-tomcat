@@ -84,7 +84,7 @@
 #
 define tomcat::instance (
   $root_path                  = '/var/lib/tomcats',
-  $version                    = $::tomcat::version_real,
+  $version                    = $tomcat::version_real,
   $archive_source             = undef,
   $archive_filename           = undef,
   $archive_mirror             = 'http://archive.apache.org',
@@ -93,14 +93,14 @@ define tomcat::instance (
   $service_name               = undef,
   $service_ensure             = 'running',
   $service_enable             = true,
-  $restart_on_change          = $::tomcat::restart_on_change,
-  $restart_on_failure         = $::tomcat::restart_on_failure,
+  $restart_on_change          = $tomcat::restart_on_change,
+  $restart_on_failure         = $tomcat::restart_on_failure,
   $systemd_service_type       = undef,
   $service_start              = undef,
   $service_stop               = undef,
-  $tomcat_user                = $::tomcat::tomcat_user_real,
+  $tomcat_user                = $tomcat::tomcat_user_real,
   $tomcat_user_id             = undef,
-  $tomcat_group               = $::tomcat::tomcat_group_real,
+  $tomcat_group               = $tomcat::tomcat_group_real,
   $tomcat_group_id            = undef,
   $file_mode                  = '0600',
   $extras_enable              = false,
@@ -351,7 +351,7 @@ define tomcat::instance (
   }
 
   # multi-version installation only supported with archive installation
-  if $version != $::tomcat::version_real and $tomcat::install_from == 'package' {
+  if $version != $tomcat::version_real and $tomcat::install_from == 'package' {
     fail('Multi-version tomcat instances do not support \'package\' installation. Please set the value of $install_from to \'archive\'')
   }
 
@@ -366,8 +366,8 @@ define tomcat::instance (
   # -----------------------#
 
   if $service_name == undef {
-    $service_name_real = $::tomcat::install_from ? {
-      'package' => "${::tomcat::package_name}_${name}",
+    $service_name_real = $tomcat::install_from ? {
+      'package' => "${tomcat::package_name}_${name}",
       default   => "tomcat${maj_version}_${name}"
     } } else {
     $service_name_real = $service_name
@@ -392,8 +392,8 @@ define tomcat::instance (
   }
 
   if $catalina_home == undef {
-    case ($version_real == $::tomcat::version_real) {
-      true    : { $catalina_home_real = $::tomcat::catalina_home_real }
+    case ($version_real == $tomcat::version_real) {
+      true    : { $catalina_home_real = $tomcat::catalina_home_real }
       default : { $catalina_home_real = "${root_path}/${name}" }
     }
   } else {
@@ -401,7 +401,7 @@ define tomcat::instance (
   }
 
   if $catalina_base == undef {
-    case ($version_real == $::tomcat::version_real) {
+    case ($version_real == $tomcat::version_real) {
       true    : { $catalina_base_real = "${root_path}/${name}" }
       default : { $catalina_base_real = $catalina_home_real }
     }
@@ -416,9 +416,9 @@ define tomcat::instance (
   }
 
   if $catalina_tmpdir == undef {
-    case $::tomcat::install_from {
+    case $tomcat::install_from {
       'package' : {
-        $catalina_tmpdir_real = $::osfamily ? {
+        $catalina_tmpdir_real = $facts['os']['family'] ? {
           'Debian' => '$JVM_TMP',
           default  => "${catalina_base_real}/temp"
         } }
@@ -431,7 +431,7 @@ define tomcat::instance (
   }
 
   if $catalina_pid == undef {
-    case $::tomcat::install_from {
+    case $tomcat::install_from {
       'package' : {
         $catalina_pid_real = "/var/run/${service_name_real}.pid"
       }
@@ -450,9 +450,9 @@ define tomcat::instance (
   }
 
   if $config_path == undef {
-    case $::tomcat::install_from {
+    case $tomcat::install_from {
       'package' : {
-        $config_path_real = $::osfamily ? {
+        $config_path_real = $facts['os']['family'] ? {
           'Debian' => "/etc/default/${service_name_real}",
           default  => "/etc/sysconfig/${service_name_real}"
         } }
@@ -465,7 +465,7 @@ define tomcat::instance (
   }
 
   if $systemd_service_type == undef {
-    if $::tomcat::install_from == 'archive' {
+    if $tomcat::install_from == 'archive' {
       $systemd_service_type_real = 'forking'
     } else {
       $systemd_service_type_real = 'simple'
@@ -475,10 +475,10 @@ define tomcat::instance (
   }
 
   if $service_start == undef {
-    case $::tomcat::install_from {
+    case $tomcat::install_from {
       # only used on systemd distros
       'package' : {
-        if $::osfamily == 'Suse' {
+        if $facts['os']['family'] == 'Suse' {
           $service_start_real = '/usr/lib/tomcat/server start'
         } else {
           $service_start_real = '/usr/libexec/tomcat/server start'
@@ -503,10 +503,10 @@ define tomcat::instance (
   }
 
   if $service_stop == undef {
-    case $::tomcat::install_from {
+    case $tomcat::install_from {
       # only used on systemd distros
       'package' : {
-        if $::osfamily == 'Suse' {
+        if $facts['os']['family'] == 'Suse' {
           $service_stop_real = '/usr/lib/tomcat/server stop'
         } else {
           $service_stop_real = '/usr/libexec/tomcat/server stop'
@@ -518,7 +518,7 @@ define tomcat::instance (
     $service_stop_real = $service_stop
   }
 
-  if $::osfamily == 'Debian' {
+  if $facts['os']['family'] == 'Debian' {
     $security_manager_real = $security_manager ? {
       true    => 'yes',
       default => 'no'
@@ -706,7 +706,7 @@ define tomcat::instance (
   }
 
   # install from archive if version differs from main instance
-  if $version_real != $::tomcat::version_real {
+  if $version_real != $tomcat::version_real {
     $catalina_home_alias = $catalina_base_real ? {
       $catalina_home_real => "instance ${name} catalina_base",
       default             => undef
@@ -805,7 +805,7 @@ define tomcat::instance (
       tag    => "instance_${name}_tree"
   }
 
-  if $::osfamily == 'Debian' and $::tomcat::install_from == 'package' {
+  if $facts['os']['family'] == 'Debian' and $tomcat::install_from == 'package' {
     file { "instance ${name} conf/policy.d directory":
       ensure  => directory,
       path    => "${catalina_base_real}/conf/policy.d",
@@ -819,7 +819,7 @@ define tomcat::instance (
   }
 
   # default pid file directory
-  if $::tomcat::install_from == 'archive' {
+  if $tomcat::install_from == 'archive' {
     file { "instance ${name} pid directory":
       ensure => directory,
       path   => "/var/run/${service_name_real}",
@@ -842,7 +842,7 @@ define tomcat::instance (
   #| systemd  | create unit, use main script | create unit, use catalina.sh   |
   # --------------------------------------------------------------------------
 
-  if $::tomcat::params::systemd {
+  if $tomcat::params::systemd {
     # manage systemd unit on compatible systems
     # Template uses:
     # - $systemd_service_type_real
@@ -867,14 +867,14 @@ define tomcat::instance (
       notify      => $notify_service
     }
   } else { # Debian, RHEL 6, SLES 11, ...
-    if $::tomcat::install_from == 'package' and !$::tomcat::force_init {
+    if $tomcat::install_from == 'package' and !$tomcat::force_init {
       # symlink main init script
       file { "${service_name_real} service unit":
         ensure => link,
         path   => "/etc/init.d/${service_name_real}",
         owner  => 'root',
         group  => 'root',
-        target => $::tomcat::service_name_real,
+        target => $tomcat::service_name_real,
         notify => $notify_service
       }
     } else {
@@ -1262,12 +1262,12 @@ define tomcat::instance (
   # --------------#
 
   if $admin_webapps {
-    if $version_real == $::tomcat::version_real {
+    if $version_real == $tomcat::version_real {
       # generate OS-specific variables
-      case $::tomcat::install_from {
+      case $tomcat::install_from {
         'package' : {
-          $admin_webapps_path = $::osfamily ? {
-            'Debian' => "/usr/share/${::tomcat::admin_webapps_package_name_real}",
+          $admin_webapps_path = $facts['os']['family'] ? {
+            'Debian' => "/usr/share/${tomcat::admin_webapps_package_name_real}",
             default  => "\${catalina.home}/webapps"
           } }
         default   : {
@@ -1318,7 +1318,7 @@ define tomcat::instance (
 
   if $extras_enable_real {
     # no need to duplicate libraries if enabled globally when tomcat versions are identical
-    if $::tomcat::extras_enable_real and $version_real == $::tomcat::version_real {
+    if $tomcat::extras_enable_real and $version_real == $tomcat::version_real {
       warning("extra libraries already enabled globally for tomcat ${version_real}, ignoring parameter 'extras_enable'")
     } else {
       Archive {

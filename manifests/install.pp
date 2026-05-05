@@ -8,16 +8,16 @@ class tomcat::install {
     fail('You must include the tomcat base class before using any tomcat sub class')
   }
 
-  case $::tomcat::install_from {
+  case $tomcat::install_from {
     'package' : { contain tomcat::install::package }
     default   : { contain tomcat::install::archive }
   }
 
   # tomcat native library
-  if $::tomcat::tomcat_native {
+  if $tomcat::tomcat_native {
     package { 'tomcat native library':
       ensure => present,
-      name   => $::tomcat::tomcat_native_package_name
+      name   => $tomcat::tomcat_native_package_name
     }
   }
 }

@@ -1,11 +1,11 @@
 # == Class: tomcat::params
 #
 class tomcat::params {
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat' : {
-      case $::operatingsystem {
+      case $facts['os']['name'] {
         'Fedora' : {
-          case $::operatingsystemmajrelease {
+          case $facts['os']['release']['major'] {
             # https://dl.fedoraproject.org/pub/fedora/linux/updates/26/x86_64/t/
             '26'    : {
               $version = '1:8.0.46'
@@ -17,7 +17,7 @@ class tomcat::params {
               $package_name = 'tomcat'
             }
             default : {
-              fail("Unsupported OS version ${::operatingsystemmajrelease}")
+              fail("Unsupported OS version ${facts['os']['release']['major']}")
             }
           }
           $systemd = true
@@ -33,7 +33,7 @@ class tomcat::params {
           $systemd = false
         }
         default  : {
-          case $::operatingsystemmajrelease {
+          case $facts['os']['release']['major'] {
             # http://mirror.centos.org/centos-7/7/updates/x86_64/Packages/
             '7'     : {
               $version = '7.0.76'
@@ -71,7 +71,7 @@ class tomcat::params {
               $systemd = false
             }
             default : {
-              fail("Unsupported OS version ${::operatingsystemmajrelease}")
+              fail("Unsupported OS version ${facts['os']['name']majrelease}")
             }
           }
         }
@@ -79,9 +79,9 @@ class tomcat::params {
       $tomcat_native_package_name = 'tomcat-native'
     }
     'Suse'   : {
-      case $::operatingsystem {
+      case $facts['os']['name'] {
         'OpenSuSE'           : {
-          case $::operatingsystemrelease {
+          case $facts['os']['name']release {
             '42.3'  : {
               # http://download.opensuse.org/distribution/leap/42.3/repo/oss/suse/noarch/
               # http://download.opensuse.org/update/leap/42.3/oss/noarch/
@@ -114,14 +114,14 @@ class tomcat::params {
               $package_name = 'tomcat'
             }
             default : {
-              fail("Unsupported OS version ${::operatingsystemrelease}")
+              fail("Unsupported OS version ${facts['os']['name']release}")
             }
           }
           $systemd = true
         }
         /^(SLES|SLED|SuSE)$/ : {
           # https://download.suse.com/patch/finder
-          case $::operatingsystemrelease {
+          case $facts['os']['name']release {
             '12.3'  : {
               $version = '8.0.43'
               $package_name = 'tomcat'
@@ -156,20 +156,20 @@ class tomcat::params {
               $systemd = false
             }
             default : {
-              fail("Unsupported OS version ${::operatingsystemrelease}")
+              fail("Unsupported OS version ${facts['os']['name']release}")
             }
           }
         }
         default              : {
-          fail("Unsupported OS ${::operatingsystem}")
+          fail("Unsupported OS ${facts['os']['name']}")
         }
       }
       $tomcat_native_package_name = 'libtcnative-1-0'
     }
     'Debian' : {
-      case $::operatingsystem {
+      case $facts['os']['name'] {
         'Debian' : {
-          case $::operatingsystemmajrelease {
+          case $facts['os']['name']majrelease {
             '12'     : {
               $version = '10.1.6-1+deb12u1'
               $package_name = 'tomcat10'
@@ -204,12 +204,12 @@ class tomcat::params {
               # $package_name = 'tomcat6'
             }
             default : {
-              fail("Unsupported OS version ${::operatingsystemmajrelease}")
+              fail("Unsupported OS version ${facts['os']['name']majrelease}")
             }
           }
         }
         'Ubuntu' : {
-          case $::operatingsystemrelease {
+          case $facts['os']['name']release {
             # artful
             # https://packages.ubuntu.com/artful/tomcat8
             '17.10' : {
@@ -269,19 +269,19 @@ class tomcat::params {
               # $package_name = 'tomcat6'
             }
             default : {
-              fail("Unsupported OS version ${::operatingsystemrelease}")
+              fail("Unsupported OS version ${facts['os']['name']release}")
             }
           }
           $systemd = false
         }
         default  : {
-          fail("Unsupported OS ${::operatingsystem}")
+          fail("Unsupported OS ${facts['os']['name']}")
         }
       }
       $tomcat_native_package_name = 'libtcnative-1'
     }
     default  : {
-      fail("Unsupported OS family ${::osfamily}")
+      fail("Unsupported OS family ${facts['os']['family']}")
     }
   }
 }

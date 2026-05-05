@@ -2,9 +2,9 @@
 #
 define tomcat::web (
   $path,
-  $owner                              = $::tomcat::tomcat_user_real,
-  $group                              = $::tomcat::tomcat_group_real,
-  $file_mode                          = $::tomcat::file_mode,
+  $owner                              = $tomcat::tomcat_user_real,
+  $group                              = $tomcat::tomcat_group_real,
+  $file_mode                          = $tomcat::file_mode,
   $default_servlet_params             = {},
   $jsp_servlet_params                 = {},
   $default_servletmapping_urlpatterns = [],
@@ -13,7 +13,7 @@ define tomcat::web (
   $sessionconfig_trackingmode         = undef,
   $welcome_file_list                  = [],
   $security_constraints               = [],
-  $version                            = $::tomcat::version_real
+  $version                            = $tomcat::version_real
   ) {
   # The base class must be included first
   if !defined(Class['tomcat']) {
